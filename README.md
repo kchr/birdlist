@@ -35,19 +35,6 @@ To install required packages, run:
 
     $ make prod
 
-Testing
--------
-
-If you want to run tests you will need some dev packages too:
-
-    $ make dev
-
-To run the suite of tests:
-
-    $ make tests
-
-See *Configuration* below on how to specify database host and port.
-
 Usage
 -----
 
@@ -57,9 +44,11 @@ Start the HTTP/JSON server:
 
 This will spawn a HTTP server on localhost port 8080, answering to requests prefixed with `/birds`.
 
-See *Configuration* below on how to specify listening interface and port.
+By default, it will try to use a MongoDB instance running on localhost port 27017.
 
-Make HTTP requests using your favorite client!
+See *Configuration* below on how to customize either of these settings.
+
+Make HTTP requests using your favorite [client](#client-examples)!
 
 Configuration
 -------------
@@ -87,12 +76,9 @@ To make it serve on another interface or port, set `WEBPY_LISTEN` in your enviro
 
     $ WEBPY_LISTEN=0.0.0.0:8080 make serve 
 
-By default, it will try to reach a MongoDB instance running on localhost port 27017.
-
 To change this, set `MONGODB_HOST` in your environment:
 
     $ MONGODB_HOST=10.0.0.1:31337 make serve 
-
 
 Client examples
 ---------------
@@ -118,6 +104,16 @@ Some examples for cURL:
     # delete bird by id
     $ curl -i -X DELETE http://localhost:8080/birds/<id>
 
+Testing
+-------
+
+If you want to run tests you will need some dev packages too:
+
+    $ make dev
+
+To run the suite of tests:
+
+    $ make tests
 
 API Specification
 -----------------
