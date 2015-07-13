@@ -1,17 +1,28 @@
 Birdlist v0.1
 =============
 
-Small HTTP/JSON server for managing a MongoDB database of birds.
+Small HTTP/JSON server with REST interface for managing a database of birds.
+
+It is written in Python, using the minimalist web.py framework and mongoengine
+as MongoDB storage interface. See below for instructions on how to configure
+and run, along with some client examples.
+
+The server logs all incoming requests (and response codes) to STDOUT.
+
+Prerequisities
+--------------
+
+You will need a MongoDB instance running somewhere within reach.
 
 Requirements
 ------------
 
 Python packages:
 
-  - web.py
-  - mongoengine
+  - web.py `(<= 0.37)`
+  - mongoengine `(<= 0.10.0)`
 
-You will also need a MongoDB instance running somewhere within reach.
+Read further down (*Installation*) on how to install required packages.
 
 Installation
 ------------
@@ -53,6 +64,25 @@ Make HTTP requests using your favorite client!
 Configuration
 -------------
 
+**Environment variables**
+
+    WEBPY_LISTEN      [127.0.0.1:8080]    Interface and port for HTTP/JSON server
+    MONGODB_HOST      [127.0.0.1:27017]   Hostname and port for mongodb instance
+    MONGODB_DB        [birds]             Database name for collection
+
+Environment variables can be exported or just passed along the command line.
+
+Therefore,
+
+    $ export MONGODB_HOST=10.0.0.1:27017
+    $ make tests
+
+...has the same effect as:
+
+    $ MONGODB_HOST=10.0.0.1:27017 make tests
+
+**Setting the environment**
+
 To make it serve on another interface or port, set `WEBPY_LISTEN` in your environment:
 
     $ WEBPY_LISTEN=0.0.0.0:8080 make serve 
@@ -63,17 +93,16 @@ To change this, set `MONGODB_HOST` in your environment:
 
     $ MONGODB_HOST=10.0.0.1:31337 make serve 
 
-Environment variables can be exported or just passed along the command line.
-
-    $ export MONGODB_HOST=10.0.0.1:27017
-    $ make tests
-
-...has the same effect as:
-
-    $ MONGODB_HOST=10.0.0.1:27017 make tests
 
 Client examples
 ---------------
+
+Recommended clients:
+
+  - [cURL](http://curl.haxx.se/)
+  - [wget](http://www.gnu.org/software/wget/)
+  - Chrome: [Advanced REST client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo)
+  - Firefox: [HttpRequester](https://addons.mozilla.org/en-US/firefox/addon/httprequester/)
 
 Some examples for cURL:
 
