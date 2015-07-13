@@ -16,6 +16,10 @@ You will also need a MongoDB instance running somewhere within reach.
 Installation
 ------------
 
+Clone this repository to a location of your choice:
+
+    $ git clone https://github.com/kchr/birdlist
+
 To install required packages, run:
 
     $ make prod
