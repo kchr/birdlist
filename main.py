@@ -1,15 +1,9 @@
+import sys
 import web
 
-from config import config, is_test
+from config import db, is_test
 from urls import urls
 
-import mongoengine
-
-db = config.database
-
-mongoengine.connect(
-    db.get('db'), host=db.get('host'), port=db.get('port')
-)
 
 app = web.application(urls, globals())
 
@@ -26,7 +20,11 @@ def error_handler(handler):
 
 app.add_processor(error_handler)
 
-if not is_test() and __name__ == "__main__":
-    app.run()
-else:
-    webapp = app.wsgifunc()
+try:
+    if not is_test() and __name__ == "__main__":
+        app.run()
+    else:
+        webapp = app.wsgifunc()
+except KeyboardInterrupt:
+    print "Exiting by user SIGINT"
+    sys.exit()
