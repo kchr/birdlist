@@ -21,10 +21,11 @@ def error_handler(handler):
 app.add_processor(error_handler)
 
 try:
-    if not is_test() and __name__ == "__main__":
-        app.run()
-    else:
-        webapp = app.wsgifunc()
+    if not is_test():
+        if __name__ == "__main__":
+            app.run()
+        else:
+            webapp = app.wsgifunc()
 except KeyboardInterrupt:
     print "Exiting by user SIGINT"
     sys.exit()
