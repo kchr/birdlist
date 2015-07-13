@@ -35,6 +35,8 @@ To run the suite of tests:
 
     $ make tests
 
+See *Configuration* below on how to specify database host and port.
+
 Usage
 -----
 
@@ -43,6 +45,13 @@ Start the HTTP/JSON server:
     $ make serve
 
 This will spawn a HTTP server on localhost port 8080, answering to requests prefixed with `/birds`.
+
+See *Configuration* below on how to specify listening interface and port.
+
+Make HTTP requests using your favorite client!
+
+Configuration
+-------------
 
 To make it serve on another interface or port, set `WEBPY_LISTEN` in your environment:
 
@@ -54,7 +63,14 @@ To change this, set `MONGODB_HOST` in your environment:
 
     $ MONGODB_HOST=10.0.0.1:31337 make serve 
 
-Make HTTP requests using your favorite client!
+Environment variables can be exported or just passed along the command line.
+
+    $ export MONGODB_HOST=10.0.0.1:27017
+    $ make tests
+
+...has the same effect as:
+
+    $ MONGODB_HOST=10.0.0.1:27017 make tests
 
 Client examples
 ---------------
