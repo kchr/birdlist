@@ -1,5 +1,4 @@
-WEBPY_ENV=test
-WEBPY_LISTEN=127.0.0.1:8080
+WEBPY_ENV = test
 
 dev:
 	pip install -r requirements/dev.txt
